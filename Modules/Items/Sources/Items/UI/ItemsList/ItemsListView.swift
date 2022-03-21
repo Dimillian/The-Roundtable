@@ -31,6 +31,10 @@ public struct ItemsListView: View {
       .task {
         await viewModel.fetchNextBaseItems()
       }
+      .refreshable {
+        viewModel.currentPage = 0
+        await viewModel.fetchNextBaseItems()
+      }
     }
   }
   

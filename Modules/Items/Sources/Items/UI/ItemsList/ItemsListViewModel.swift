@@ -29,7 +29,7 @@ class ItemsListViewModel: ObservableObject {
   }
   
   private var datasource: [BaseItemData] = []
-  private var currentPage = 0
+  var currentPage = 0
   
   func fetchNextBaseItems() async {
     if currentPage > 0 {
@@ -49,42 +49,22 @@ class ItemsListViewModel: ObservableObject {
   
   private func fetchNextItems() async {
     let query = GQL.GetItemsQuery(page: currentPage, limit: Constants.itemsPerPage)
-    guard let data = await processQuery(query: query)?.item else {
-      state = .error
-      return
-    }
-    let items = data.compactMap{ $0?.fragments.baseItemData }
-    processItems(items: items)
+    processItems(items: await processQuery(query: query)?.item?.compactMap{ $0?.fragments.baseItemData } )
   }
   
   private func fetchNextArmors() async {
     let query = GQL.GetArmorsQuery(page: currentPage, limit: Constants.itemsPerPage)
-    guard let data = await processQuery(query: query)?.armor else {
-      state = .error
-      return
-    }
-    let items = data.compactMap{ $0?.fragments.baseArmorData }
-    processItems(items: items)
+    processItems(items: await processQuery(query: query)?.armor?.compactMap{ $0?.fragments.baseArmorData } )
   }
   
   private func fetchNextWeapons() async {
     let query = GQL.GetWeaponsQuery(page: currentPage, limit: Constants.itemsPerPage)
-    guard let data = await processQuery(query: query)?.weapon else {
-      state = .error
-      return
-    }
-    let items = data.compactMap{ $0?.fragments.baseWeaponData }
-    processItems(items: items)
+    processItems(items: await processQuery(query: query)?.weapon?.compactMap{ $0?.fragments.baseWeaponData } )
   }
   
   private func fetchNextTalismans() async {
     let query = GQL.GetTalismansQuery(page: currentPage, limit: Constants.itemsPerPage)
-    guard let data = await processQuery(query: query)?.talisman else {
-      state = .error
-      return
-    }
-    let items = data.compactMap{ $0?.fragments.baseTalismanData }
-    processItems(items: items)
+    processItems(items: await processQuery(query: query)?.talisman?.compactMap{ $0?.fragments.baseTalismanData } )
   }
   
   private func processQuery<Query>(query: Query) async -> Query.Data? where Query: GraphQLQuery {
@@ -96,7 +76,12 @@ class ItemsListViewModel: ObservableObject {
     }
   }
   
-  private func processItems(items: [BaseItemData]) {
+  private func processItems(items: [BaseItemData]?) {
+    guard let items = items else {
+      state = .error
+      return
+    }
+    
     if currentPage == 0 {
       datasource = items
     } else {
