@@ -1,0 +1,14 @@
+query GetItems($page: Int!, $limit: Int!) {
+  item(page: $page, limit: $limit) {
+    ...ItemData
+  }
+}
+
+fragment ItemData on Item {
+  id
+  image
+  name
+  description
+  effect
+  type
+}
