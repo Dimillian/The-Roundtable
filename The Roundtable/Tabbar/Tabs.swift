@@ -2,7 +2,7 @@ import SwiftUI
 import Items
 
 enum Tabs: Int, CaseIterable, Identifiable {
-  case items, equipments, magic, locations, notes
+  case items, magic, world, locations, notes
   
   var id: Int {
     self.rawValue
@@ -13,9 +13,9 @@ enum Tabs: Int, CaseIterable, Identifiable {
     switch self {
     case .items:
       ItemsListView()
-    case .equipments:
-      Color.red
     case .magic:
+      Color.red
+    case .world:
       Color.blue
     case .locations:
       Color.brown
@@ -28,10 +28,10 @@ enum Tabs: Int, CaseIterable, Identifiable {
     switch self {
     case .items:
       return "Items"
-    case .equipments:
-      return "Equipments"
     case .magic:
       return "Magic"
+    case .world:
+      return "World"
     case .locations:
       return "Locations"
     case .notes:
@@ -43,10 +43,10 @@ enum Tabs: Int, CaseIterable, Identifiable {
     switch self {
     case .items:
       return "bag"
-    case .equipments:
-      return "person"
     case .magic:
       return "wand.and.stars"
+    case .world:
+      return "globe.europe.africa"
     case .locations:
       return "map"
     case .notes:

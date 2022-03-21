@@ -4,7 +4,7 @@ import SharedUI
 import Kingfisher
 
 struct ItemsListRowView: View {
-  let item: GQL.ItemData
+  let item: BaseItemData
   
   var body: some View {
     VStack(alignment: .leading, spacing: 8) {

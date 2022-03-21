@@ -1,7 +1,65 @@
 query GetItems($page: Int!, $limit: Int!) {
   item(page: $page, limit: $limit) {
+    ...BaseItemData
+  }
+}
+
+query GetItem($id: String!) {
+  getItem(id: $id) {
     ...ItemData
   }
+}
+
+query GetArmors($page: Int!, $limit: Int!) {
+  armor(page: $page, limit: $limit) {
+    ...BaseArmorData
+  }
+}
+
+query GetArmor($id: String!) {
+  getArmor(id: $id) {
+    ...ArmorData
+  }
+}
+
+query GetWeapons($page: Int!, $limit: Int!) {
+  weapon(page: $page, limit: $limit) {
+    ...BaseWeaponData
+  }
+}
+
+query GetTalismans($page: Int!, $limit: Int!) {
+  talisman(page: $page, limit: $limit) {
+    ...BaseTalismanData
+  }
+}
+
+fragment BaseItemData on Item {
+  id
+  image
+  name
+  description
+}
+
+fragment BaseArmorData on Armor {
+  id
+  image
+  name
+  description
+}
+
+fragment BaseWeaponData on Weapon {
+  id
+  image
+  name
+  description
+}
+
+fragment BaseTalismanData on Talisman {
+  id
+  image
+  name
+  description
 }
 
 fragment ItemData on Item {
@@ -9,6 +67,25 @@ fragment ItemData on Item {
   image
   name
   description
-  effect
   type
+  effect
+}
+
+fragment ArmorData on Armor {
+  id
+  image
+  name
+  description
+  weight
+  resistance {
+    ...AttributeEntryData
+  }
+  dmgNegation {
+    ...AttributeEntryData
+  }
+}
+
+fragment AttributeEntryData on AttributeEntry {
+  name
+  amount
 }
