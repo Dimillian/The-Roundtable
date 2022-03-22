@@ -1,0 +1,9 @@
+fragment AttributeEntryData on AttributeEntry {
+  name
+  amount
+}
+
+fragment ScallingEntryData on ScallingEntry {
+  name
+  scalling
+}

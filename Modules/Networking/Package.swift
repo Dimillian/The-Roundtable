@@ -21,7 +21,8 @@ let package = Package(
       name: "Networking",
       dependencies: [
         .product(name: "Apollo", package: "apollo-ios")
-      ]),
+      ],
+      exclude: ["GQL/shared.graphql"]),
     .testTarget(
       name: "NetworkingTests",
       dependencies: ["Networking"]),

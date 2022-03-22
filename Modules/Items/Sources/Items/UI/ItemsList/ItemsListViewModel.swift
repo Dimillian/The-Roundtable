@@ -7,7 +7,7 @@ import Apollo
 @MainActor
 class ItemsListViewModel: ObservableObject {
   enum Constants {
-    static let itemsPerPage = 20
+    static let itemsPerPage = 100
   }
   
   enum State {

@@ -11,6 +11,7 @@
 		9F7C08DF27E8C724006732EE /* AppTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C08DE27E8C724006732EE /* AppTabbar.swift */; };
 		9F7C08E127E8C821006732EE /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C08E027E8C821006732EE /* Tabs.swift */; };
 		9FADB98627E8846C00447FAB /* Items in Frameworks */ = {isa = PBXBuildFile; productRef = 9FADB98527E8846C00447FAB /* Items */; };
+		9FD3106C27EA43B3003934D0 /* Magic in Frameworks */ = {isa = PBXBuildFile; productRef = 9FD3106B27EA43B3003934D0 /* Magic */; };
 		9FD834B327E86D34000D98C3 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD834B227E86D34000D98C3 /* App.swift */; };
 		9FD834B727E86D36000D98C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FD834B627E86D36000D98C3 /* Assets.xcassets */; };
 		9FD834BA27E86D36000D98C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FD834B927E86D36000D98C3 /* Preview Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		9FD834C027E86E85000D98C3 /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Networking; path = Modules/Networking; sourceTree = "<group>"; };
 		9FD834C127E86E9B000D98C3 /* ApolloModels */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApolloModels; path = Modules/ApolloModels; sourceTree = "<group>"; };
 		9FD834C227E86F7B000D98C3 /* ApolloCodegen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApolloCodegen; path = Modules/ApolloCodegen; sourceTree = "<group>"; };
+		9FDD2CD327EA05A400EC6987 /* Magic */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Magic; path = Modules/Magic; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FD3106C27EA43B3003934D0 /* Magic in Frameworks */,
 				9FADB98627E8846C00447FAB /* Items in Frameworks */,
 				9F61913A27E8B89700D472EA /* SharedUI in Frameworks */,
 			);
@@ -67,6 +70,7 @@
 				9FD834C127E86E9B000D98C3 /* ApolloModels */,
 				9FADB98327E8764E00447FAB /* Items */,
 				9FD834C027E86E85000D98C3 /* Networking */,
+				9FDD2CD327EA05A400EC6987 /* Magic */,
 				9F3E6EDB27E8B5AD0010A341 /* SharedUI */,
 				9FD834B027E86D34000D98C3 /* Products */,
 				9FADB98427E8846C00447FAB /* Frameworks */,
@@ -119,6 +123,7 @@
 			packageProductDependencies = (
 				9FADB98527E8846C00447FAB /* Items */,
 				9F61913927E8B89700D472EA /* SharedUI */,
+				9FD3106B27EA43B3003934D0 /* Magic */,
 			);
 			productName = "The Roundtable";
 			productReference = 9FD834AF27E86D34000D98C3 /* The Roundtable.app */;
@@ -386,6 +391,10 @@
 		9FADB98527E8846C00447FAB /* Items */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Items;
+		};
+		9FD3106B27EA43B3003934D0 /* Magic */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Magic;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

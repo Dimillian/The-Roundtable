@@ -1,5 +1,6 @@
 import SwiftUI
 import Items
+import Magic
 
 enum Tabs: Int, CaseIterable, Identifiable {
   case items, magic, world, locations, notes
@@ -14,7 +15,7 @@ enum Tabs: Int, CaseIterable, Identifiable {
     case .items:
       ItemsListView()
     case .magic:
-      Color.red
+      MagicListView()
     case .world:
       Color.blue
     case .locations:

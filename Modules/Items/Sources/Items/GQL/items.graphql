@@ -125,13 +125,3 @@ fragment TalismanData on Talisman {
   description
   effect
 }
-
-fragment AttributeEntryData on AttributeEntry {
-  name
-  amount
-}
-
-fragment ScallingEntryData on ScallingEntry {
-  name
-  scalling
-}
