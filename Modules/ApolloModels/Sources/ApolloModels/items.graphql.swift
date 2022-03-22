@@ -589,6 +589,120 @@ public extension GQL {
     }
   }
 
+  final class GetWeaponQuery: GraphQLQuery {
+    /// The raw GraphQL definition of this operation.
+    public let operationDefinition: String =
+      """
+      query GetWeapon($id: String!) {
+        getWeapon(id: $id) {
+          __typename
+          ...WeaponData
+        }
+      }
+      """
+
+    public let operationName: String = "GetWeapon"
+
+    public var queryDocument: String {
+      var document: String = operationDefinition
+      document.append("\n" + WeaponData.fragmentDefinition)
+      document.append("\n" + AttributeEntryData.fragmentDefinition)
+      document.append("\n" + ScallingEntryData.fragmentDefinition)
+      return document
+    }
+
+    public var id: String
+
+    public init(id: String) {
+      self.id = id
+    }
+
+    public var variables: GraphQLMap? {
+      return ["id": id]
+    }
+
+    public struct Data: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["Query"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("getWeapon", arguments: ["id": GraphQLVariable("id")], type: .nonNull(.object(GetWeapon.selections))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(getWeapon: GetWeapon) {
+        self.init(unsafeResultMap: ["__typename": "Query", "getWeapon": getWeapon.resultMap])
+      }
+
+      public var getWeapon: GetWeapon {
+        get {
+          return GetWeapon(unsafeResultMap: resultMap["getWeapon"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "getWeapon")
+        }
+      }
+
+      public struct GetWeapon: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["Weapon"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLFragmentSpread(WeaponData.self),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var fragments: Fragments {
+          get {
+            return Fragments(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+
+        public struct Fragments {
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public var weaponData: WeaponData {
+            get {
+              return WeaponData(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
+        }
+      }
+    }
+  }
+
   final class GetTalismansQuery: GraphQLQuery {
     /// The raw GraphQL definition of this operation.
     public let operationDefinition: String =
@@ -697,6 +811,122 @@ public extension GQL {
           public var baseTalismanData: BaseTalismanData {
             get {
               return BaseTalismanData(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
+        }
+      }
+    }
+  }
+
+  final class GetTalismanQuery: GraphQLQuery {
+    /// The raw GraphQL definition of this operation.
+    public let operationDefinition: String =
+      """
+      query GetTalisman($id: String!) {
+        getTalisman(id: $id) {
+          __typename
+          ...TalismanData
+        }
+      }
+      """
+
+    public let operationName: String = "GetTalisman"
+
+    public var queryDocument: String {
+      var document: String = operationDefinition
+      document.append("\n" + TalismanData.fragmentDefinition)
+      return document
+    }
+
+    public var id: String
+
+    public init(id: String) {
+      self.id = id
+    }
+
+    public var variables: GraphQLMap? {
+      return ["id": id]
+    }
+
+    public struct Data: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["Query"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("getTalisman", arguments: ["id": GraphQLVariable("id")], type: .nonNull(.object(GetTalisman.selections))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(getTalisman: GetTalisman) {
+        self.init(unsafeResultMap: ["__typename": "Query", "getTalisman": getTalisman.resultMap])
+      }
+
+      public var getTalisman: GetTalisman {
+        get {
+          return GetTalisman(unsafeResultMap: resultMap["getTalisman"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "getTalisman")
+        }
+      }
+
+      public struct GetTalisman: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["Talisman"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLFragmentSpread(TalismanData.self),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: GraphQLID, image: String? = nil, name: String? = nil, description: String? = nil, effect: String? = nil) {
+          self.init(unsafeResultMap: ["__typename": "Talisman", "id": id, "image": image, "name": name, "description": description, "effect": effect])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var fragments: Fragments {
+          get {
+            return Fragments(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+
+        public struct Fragments {
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public var talismanData: TalismanData {
+            get {
+              return TalismanData(unsafeResultMap: resultMap)
             }
             set {
               resultMap += newValue.resultMap
@@ -1366,6 +1596,481 @@ public extension GQL {
     }
   }
 
+  struct WeaponData: GraphQLFragment {
+    /// The raw GraphQL definition of this fragment.
+    public static let fragmentDefinition: String =
+      """
+      fragment WeaponData on Weapon {
+        __typename
+        id
+        image
+        name
+        description
+        weight
+        category
+        attack {
+          __typename
+          ...AttributeEntryData
+        }
+        defence {
+          __typename
+          ...AttributeEntryData
+        }
+        scalesWith {
+          __typename
+          ...ScallingEntryData
+        }
+        requiredAttributes {
+          __typename
+          ...AttributeEntryData
+        }
+      }
+      """
+
+    public static let possibleTypes: [String] = ["Weapon"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("image", type: .scalar(String.self)),
+        GraphQLField("name", type: .scalar(String.self)),
+        GraphQLField("description", type: .scalar(String.self)),
+        GraphQLField("weight", type: .scalar(Int.self)),
+        GraphQLField("category", type: .scalar(String.self)),
+        GraphQLField("attack", type: .list(.object(Attack.selections))),
+        GraphQLField("defence", type: .list(.object(Defence.selections))),
+        GraphQLField("scalesWith", type: .list(.object(ScalesWith.selections))),
+        GraphQLField("requiredAttributes", type: .list(.object(RequiredAttribute.selections))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(id: GraphQLID, image: String? = nil, name: String? = nil, description: String? = nil, weight: Int? = nil, category: String? = nil, attack: [Attack?]? = nil, defence: [Defence?]? = nil, scalesWith: [ScalesWith?]? = nil, requiredAttributes: [RequiredAttribute?]? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Weapon", "id": id, "image": image, "name": name, "description": description, "weight": weight, "category": category, "attack": attack.flatMap { (value: [Attack?]) -> [ResultMap?] in value.map { (value: Attack?) -> ResultMap? in value.flatMap { (value: Attack) -> ResultMap in value.resultMap } } }, "defence": defence.flatMap { (value: [Defence?]) -> [ResultMap?] in value.map { (value: Defence?) -> ResultMap? in value.flatMap { (value: Defence) -> ResultMap in value.resultMap } } }, "scalesWith": scalesWith.flatMap { (value: [ScalesWith?]) -> [ResultMap?] in value.map { (value: ScalesWith?) -> ResultMap? in value.flatMap { (value: ScalesWith) -> ResultMap in value.resultMap } } }, "requiredAttributes": requiredAttributes.flatMap { (value: [RequiredAttribute?]) -> [ResultMap?] in value.map { (value: RequiredAttribute?) -> ResultMap? in value.flatMap { (value: RequiredAttribute) -> ResultMap in value.resultMap } } }])
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var id: GraphQLID {
+      get {
+        return resultMap["id"]! as! GraphQLID
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "id")
+      }
+    }
+
+    public var image: String? {
+      get {
+        return resultMap["image"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "image")
+      }
+    }
+
+    public var name: String? {
+      get {
+        return resultMap["name"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "name")
+      }
+    }
+
+    public var description: String? {
+      get {
+        return resultMap["description"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "description")
+      }
+    }
+
+    public var weight: Int? {
+      get {
+        return resultMap["weight"] as? Int
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "weight")
+      }
+    }
+
+    public var category: String? {
+      get {
+        return resultMap["category"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "category")
+      }
+    }
+
+    public var attack: [Attack?]? {
+      get {
+        return (resultMap["attack"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Attack?] in value.map { (value: ResultMap?) -> Attack? in value.flatMap { (value: ResultMap) -> Attack in Attack(unsafeResultMap: value) } } }
+      }
+      set {
+        resultMap.updateValue(newValue.flatMap { (value: [Attack?]) -> [ResultMap?] in value.map { (value: Attack?) -> ResultMap? in value.flatMap { (value: Attack) -> ResultMap in value.resultMap } } }, forKey: "attack")
+      }
+    }
+
+    public var defence: [Defence?]? {
+      get {
+        return (resultMap["defence"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Defence?] in value.map { (value: ResultMap?) -> Defence? in value.flatMap { (value: ResultMap) -> Defence in Defence(unsafeResultMap: value) } } }
+      }
+      set {
+        resultMap.updateValue(newValue.flatMap { (value: [Defence?]) -> [ResultMap?] in value.map { (value: Defence?) -> ResultMap? in value.flatMap { (value: Defence) -> ResultMap in value.resultMap } } }, forKey: "defence")
+      }
+    }
+
+    public var scalesWith: [ScalesWith?]? {
+      get {
+        return (resultMap["scalesWith"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [ScalesWith?] in value.map { (value: ResultMap?) -> ScalesWith? in value.flatMap { (value: ResultMap) -> ScalesWith in ScalesWith(unsafeResultMap: value) } } }
+      }
+      set {
+        resultMap.updateValue(newValue.flatMap { (value: [ScalesWith?]) -> [ResultMap?] in value.map { (value: ScalesWith?) -> ResultMap? in value.flatMap { (value: ScalesWith) -> ResultMap in value.resultMap } } }, forKey: "scalesWith")
+      }
+    }
+
+    public var requiredAttributes: [RequiredAttribute?]? {
+      get {
+        return (resultMap["requiredAttributes"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [RequiredAttribute?] in value.map { (value: ResultMap?) -> RequiredAttribute? in value.flatMap { (value: ResultMap) -> RequiredAttribute in RequiredAttribute(unsafeResultMap: value) } } }
+      }
+      set {
+        resultMap.updateValue(newValue.flatMap { (value: [RequiredAttribute?]) -> [ResultMap?] in value.map { (value: RequiredAttribute?) -> ResultMap? in value.flatMap { (value: RequiredAttribute) -> ResultMap in value.resultMap } } }, forKey: "requiredAttributes")
+      }
+    }
+
+    public struct Attack: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["AttributeEntry"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLFragmentSpread(AttributeEntryData.self),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(name: String? = nil, amount: Int? = nil) {
+        self.init(unsafeResultMap: ["__typename": "AttributeEntry", "name": name, "amount": amount])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var fragments: Fragments {
+        get {
+          return Fragments(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+
+      public struct Fragments {
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var attributeEntryData: AttributeEntryData {
+          get {
+            return AttributeEntryData(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+      }
+    }
+
+    public struct Defence: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["AttributeEntry"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLFragmentSpread(AttributeEntryData.self),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(name: String? = nil, amount: Int? = nil) {
+        self.init(unsafeResultMap: ["__typename": "AttributeEntry", "name": name, "amount": amount])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var fragments: Fragments {
+        get {
+          return Fragments(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+
+      public struct Fragments {
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var attributeEntryData: AttributeEntryData {
+          get {
+            return AttributeEntryData(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+      }
+    }
+
+    public struct ScalesWith: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["ScallingEntry"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLFragmentSpread(ScallingEntryData.self),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(name: String? = nil, scalling: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "ScallingEntry", "name": name, "scalling": scalling])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var fragments: Fragments {
+        get {
+          return Fragments(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+
+      public struct Fragments {
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var scallingEntryData: ScallingEntryData {
+          get {
+            return ScallingEntryData(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+      }
+    }
+
+    public struct RequiredAttribute: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["AttributeEntry"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLFragmentSpread(AttributeEntryData.self),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(name: String? = nil, amount: Int? = nil) {
+        self.init(unsafeResultMap: ["__typename": "AttributeEntry", "name": name, "amount": amount])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var fragments: Fragments {
+        get {
+          return Fragments(unsafeResultMap: resultMap)
+        }
+        set {
+          resultMap += newValue.resultMap
+        }
+      }
+
+      public struct Fragments {
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public var attributeEntryData: AttributeEntryData {
+          get {
+            return AttributeEntryData(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+      }
+    }
+  }
+
+  struct TalismanData: GraphQLFragment {
+    /// The raw GraphQL definition of this fragment.
+    public static let fragmentDefinition: String =
+      """
+      fragment TalismanData on Talisman {
+        __typename
+        id
+        image
+        name
+        description
+        effect
+      }
+      """
+
+    public static let possibleTypes: [String] = ["Talisman"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("image", type: .scalar(String.self)),
+        GraphQLField("name", type: .scalar(String.self)),
+        GraphQLField("description", type: .scalar(String.self)),
+        GraphQLField("effect", type: .scalar(String.self)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(id: GraphQLID, image: String? = nil, name: String? = nil, description: String? = nil, effect: String? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Talisman", "id": id, "image": image, "name": name, "description": description, "effect": effect])
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var id: GraphQLID {
+      get {
+        return resultMap["id"]! as! GraphQLID
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "id")
+      }
+    }
+
+    public var image: String? {
+      get {
+        return resultMap["image"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "image")
+      }
+    }
+
+    public var name: String? {
+      get {
+        return resultMap["name"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "name")
+      }
+    }
+
+    public var description: String? {
+      get {
+        return resultMap["description"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "description")
+      }
+    }
+
+    public var effect: String? {
+      get {
+        return resultMap["effect"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "effect")
+      }
+    }
+  }
+
   struct AttributeEntryData: GraphQLFragment {
     /// The raw GraphQL definition of this fragment.
     public static let fragmentDefinition: String =
@@ -1421,6 +2126,65 @@ public extension GQL {
       }
       set {
         resultMap.updateValue(newValue, forKey: "amount")
+      }
+    }
+  }
+
+  struct ScallingEntryData: GraphQLFragment {
+    /// The raw GraphQL definition of this fragment.
+    public static let fragmentDefinition: String =
+      """
+      fragment ScallingEntryData on ScallingEntry {
+        __typename
+        name
+        scalling
+      }
+      """
+
+    public static let possibleTypes: [String] = ["ScallingEntry"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("name", type: .scalar(String.self)),
+        GraphQLField("scalling", type: .scalar(String.self)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(name: String? = nil, scalling: String? = nil) {
+      self.init(unsafeResultMap: ["__typename": "ScallingEntry", "name": name, "scalling": scalling])
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var name: String? {
+      get {
+        return resultMap["name"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "name")
+      }
+    }
+
+    public var scalling: String? {
+      get {
+        return resultMap["scalling"] as? String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "scalling")
       }
     }
   }

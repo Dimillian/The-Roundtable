@@ -5,7 +5,7 @@ import Networking
 
 @MainActor
 class ItemDetailViewModel: ObservableObject {
-  @Published var item: ItemData?
+  @Published var item: BaseItemData?
   
   private let baseItem: BaseItemData
   
@@ -22,8 +22,12 @@ class ItemDetailViewModel: ObservableObject {
       case .armor:
         let query = GQL.GetArmorQuery(id: baseItem.id)
         self.item = try await GQLClient.shared.fetch(query: query).getArmor.fragments.armorData
-      case .talisman, .weapon:
-        break
+      case .weapon:
+        let query = GQL.GetWeaponQuery(id: baseItem.id)
+        self.item = try await GQLClient.shared.fetch(query: query).getWeapon.fragments.weaponData
+      case .talisman:
+        let query = GQL.GetTalismanQuery(id: baseItem.id)
+        self.item = try await GQLClient.shared.fetch(query: query).getTalisman.fragments.talismanData
       }
     } catch {
   

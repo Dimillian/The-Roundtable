@@ -28,9 +28,21 @@ query GetWeapons($page: Int!, $limit: Int!) {
   }
 }
 
+query GetWeapon($id: String!) {
+  getWeapon(id: $id) {
+    ...WeaponData
+  }
+}
+
 query GetTalismans($page: Int!, $limit: Int!) {
   talisman(page: $page, limit: $limit) {
     ...BaseTalismanData
+  }
+}
+
+query GetTalisman($id: String!) {
+  getTalisman(id: $id) {
+    ...TalismanData
   }
 }
 
@@ -85,7 +97,41 @@ fragment ArmorData on Armor {
   }
 }
 
+fragment WeaponData on Weapon {
+  id
+  image
+  name
+  description
+  weight
+  category
+  attack {
+    ...AttributeEntryData
+  }
+  defence {
+    ...AttributeEntryData
+  }
+  scalesWith {
+    ...ScallingEntryData
+  }
+  requiredAttributes {
+    ...AttributeEntryData
+  }
+}
+
+fragment TalismanData on Talisman {
+  id
+  image
+  name
+  description
+  effect
+}
+
 fragment AttributeEntryData on AttributeEntry {
   name
   amount
+}
+
+fragment ScallingEntryData on ScallingEntry {
+  name
+  scalling
 }

@@ -14,9 +14,9 @@ enum ItemTab: Int, Identifiable, CaseIterable, Equatable {
     case .weapon:
       return "Weapons"
     case .armor:
-      return "Armor"
+      return "Armors"
     case .talisman:
-      return "Talisman"
+      return "Talismans"
     }
   }
 }

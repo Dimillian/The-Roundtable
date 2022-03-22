@@ -13,17 +13,28 @@ protocol BaseItemData {
   var itemType: ItemType { get }
 }
 
-protocol ItemData {
-  var id: String { get }
-  var name: String? { get }
-  var image: String? { get }
-  var description: String? { get }
-  var itemType: ItemType { get }
+protocol ItemPouchData {
   var effect: String? { get }
   var type: String? { get }
+}
+
+protocol ArmorItemData {
   var weight: Int? { get }
   var resistanceData: [GQL.AttributeEntryData]? { get }
   var dmgNegationData: [GQL.AttributeEntryData]? { get }
+}
+
+protocol WeaponItemData {
+  var weight: Int? { get }
+  var category: String? { get }
+  var attackData: [GQL.AttributeEntryData]? { get }
+  var defenceData: [GQL.AttributeEntryData]? { get }
+  var scallingData: [GQL.ScallingEntryData]? { get }
+  var requiredAttributesData: [GQL.ScallingEntryData]? { get }
+}
+
+protocol TalismanItemData {
+  var effect: String? { get }
 }
 
 extension GQL.BaseItemData: BaseItemData {
@@ -32,19 +43,7 @@ extension GQL.BaseItemData: BaseItemData {
   }
 }
 
-extension GQL.ItemData: BaseItemData, ItemData {
-  var weight: Int? {
-    nil
-  }
-  
-  var resistanceData: [GQL.AttributeEntryData]? {
-    nil
-  }
-  
-  var dmgNegationData: [GQL.AttributeEntryData]? {
-    nil
-  }
-  
+extension GQL.ItemData: BaseItemData, ItemPouchData {
   var itemType: ItemType {
     .item
   }
@@ -56,17 +55,9 @@ extension GQL.BaseArmorData: BaseItemData {
   }
 }
 
-extension GQL.ArmorData: BaseItemData, ItemData {
+extension GQL.ArmorData: BaseItemData, ArmorItemData {
   var itemType: ItemType {
     .armor
-  }
-  
-  var effect: String? {
-    nil
-  }
-  
-  var type: String? {
-    nil
   }
   
   var resistanceData: [GQL.AttributeEntryData]? {
@@ -86,7 +77,35 @@ extension GQL.BaseWeaponData: BaseItemData {
   }
 }
 
+extension GQL.WeaponData: BaseItemData, WeaponItemData {
+  var itemType: ItemType {
+    .weapon
+  }
+  
+  var attackData: [GQL.AttributeEntryData]? {
+    attack?.compactMap{ $0?.fragments.attributeEntryData }
+  }
+  
+  var defenceData: [GQL.AttributeEntryData]? {
+    defence?.compactMap{ $0?.fragments.attributeEntryData }
+  }
+  
+  var scallingData: [GQL.ScallingEntryData]? {
+    scalesWith?.compactMap{ $0?.fragments.scallingEntryData }
+  }
+  
+  var requiredAttributesData: [GQL.ScallingEntryData]? {
+    scalesWith?.compactMap{ $0?.fragments.scallingEntryData }
+  }
+}
+
 extension GQL.BaseTalismanData: BaseItemData {
+  var itemType: ItemType {
+    .talisman
+  }
+}
+
+extension GQL.TalismanData: BaseItemData, TalismanItemData {
   var itemType: ItemType {
     .talisman
   }
