@@ -1,0 +1,59 @@
+query GetMagic($page: Int!, $limit: Int!) {
+  sorcery(page: $page, limit: $limit) {
+    ...SorceryData
+  }
+  incantation(page: $page, limit: $limit) {
+    ...IncantationData
+  }
+  ashOfWar(page: $page, limit: $limit) {
+    ...AshOfWarData
+  }
+  spirit(page: $page, limit: $limit) {
+    ...SpiritData
+  }
+}
+
+fragment IncantationData on Incantation {
+  id
+  name
+  description
+  effects
+  image
+  slots
+  cost
+  requires {
+    ...AttributeEntryData
+  }
+}
+
+fragment SorceryData on Sorcery {
+  id
+  name
+  description
+  effects
+  image
+  slots
+  cost
+  requires {
+    ...AttributeEntryData
+  }
+}
+
+fragment AshOfWarData on AshOfWar {
+  id
+  name
+  image
+  description
+  affinity
+  skill
+}
+
+fragment SpiritData on Spirit {
+  id
+  name
+  image
+  description
+  fpCost
+  hpCost
+  effect
+}
