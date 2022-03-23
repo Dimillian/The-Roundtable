@@ -12,12 +12,12 @@ struct SwiftScript: ParsableCommand {
       .apollo.parentFolderURL()
   
   static let outputURL = rootFolderURL
-    .apollo.childFolderURL(folderName:"ApolloModels")
+    .apollo.childFolderURL(folderName:"Models")
     .apollo.childFolderURL(folderName:"Sources")
     .apollo.childFolderURL(folderName:"ApolloModels")
   
   static let schemaURL = rootFolderURL
-    .apollo.childFolderURL(folderName: "ApolloModels")
+    .apollo.childFolderURL(folderName: "Models")
     .apollo.childFolderURL(folderName: "Schema")
   
   static let schemaPath = try! schemaURL.apollo.childFileURL(fileName: "schema.graphqls")
@@ -54,7 +54,7 @@ struct SwiftScript: ParsableCommand {
     
     func run() throws {
       let cliFolderURL = rootFolderURL
-        .apollo.childFolderURL(folderName: "ApolloCodegen")
+        .apollo.childFolderURL(folderName: "Models")
       
       let codegenOptions = ApolloCodegenOptions(mergeInFieldsFromFragmentSpreads: false,
                                                 namespace: "GQL",

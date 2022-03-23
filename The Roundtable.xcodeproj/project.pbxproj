@@ -18,18 +18,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F1AC1D927EAFD11003A1A95 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Models; path = Modules/Models; sourceTree = "<group>"; };
 		9F3E6EDB27E8B5AD0010A341 /* SharedUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedUI; path = Modules/SharedUI; sourceTree = "<group>"; };
 		9F7C08DE27E8C724006732EE /* AppTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabbar.swift; sourceTree = "<group>"; };
 		9F7C08E027E8C821006732EE /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
-		9FADB98327E8764E00447FAB /* Items */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Items; path = Modules/Items; sourceTree = "<group>"; };
+		9FCC570827EB04AD00050ED0 /* Features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Features; path = Modules/Features; sourceTree = "<group>"; };
 		9FD834AF27E86D34000D98C3 /* The Roundtable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Roundtable.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD834B227E86D34000D98C3 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		9FD834B627E86D36000D98C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FD834B927E86D36000D98C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9FD834C027E86E85000D98C3 /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Networking; path = Modules/Networking; sourceTree = "<group>"; };
-		9FD834C127E86E9B000D98C3 /* ApolloModels */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApolloModels; path = Modules/ApolloModels; sourceTree = "<group>"; };
-		9FD834C227E86F7B000D98C3 /* ApolloCodegen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApolloCodegen; path = Modules/ApolloCodegen; sourceTree = "<group>"; };
-		9FDD2CD327EA05A400EC6987 /* Magic */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Magic; path = Modules/Magic; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,12 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				9FD834B127E86D34000D98C3 /* The Roundtable */,
-				9FD834C227E86F7B000D98C3 /* ApolloCodegen */,
-				9FD834C127E86E9B000D98C3 /* ApolloModels */,
-				9FADB98327E8764E00447FAB /* Items */,
+				9F1AC1D927EAFD11003A1A95 /* Models */,
 				9FD834C027E86E85000D98C3 /* Networking */,
-				9FDD2CD327EA05A400EC6987 /* Magic */,
 				9F3E6EDB27E8B5AD0010A341 /* SharedUI */,
+				9FCC570827EB04AD00050ED0 /* Features */,
 				9FD834B027E86D34000D98C3 /* Products */,
 				9FADB98427E8846C00447FAB /* Frameworks */,
 			);

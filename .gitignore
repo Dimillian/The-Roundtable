@@ -89,7 +89,10 @@ fastlane/test_output
 
 iOSInjectionProject/
 
-Modules/ApolloCodegen/apollo
 
 .DS_Store
+
+Modules/ApolloCodegen/apollo
 Modules/ApolloCodegen/apollo.tar.gz
+Modules/Models/apollo.tar.gz
+Modules/Models/apollo

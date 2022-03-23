@@ -16,12 +16,12 @@ let package = Package(
   dependencies: [
     .package(url: "https://github.com/onevcat/Kingfisher",
              .upToNextMajor(from: "7.2.0")),
-    .package(name: "ApolloModels", path: "./ApolloModels"),
+    .package(name: "Models", path: "./Models"),
   ],
   targets: [
     .target(
       name: "SharedUI",
-      dependencies: ["ApolloModels",
+      dependencies: [.product(name: "ApolloModels", package: "Models"),
                      .product(name: "Kingfisher", package: "Kingfisher")],
       resources: [
         .process("Resources/Colors.xcassets"),
