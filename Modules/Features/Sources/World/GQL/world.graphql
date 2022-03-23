@@ -1,0 +1,41 @@
+query GetWorld($page: Int!, $limit: Int!) {
+  npc(page: $page, limit: $limit) {
+    ...NPCData
+  }
+  boss(page: $page, limit: $limit) {
+    ...BossData
+  }
+  creature(page: $page, limit: $limit) {
+    ...CreatureData
+  }
+}
+
+fragment NPCData on Npc {
+  id
+  name
+  location
+  role
+  image
+  quote
+  description
+}
+
+fragment BossData on Boss {
+  id
+  name
+  location
+  description
+  healthPoints
+  drops
+  image
+}
+
+fragment CreatureData on Creature {
+  id
+  name
+  location
+  image
+  drops
+  description
+}
+

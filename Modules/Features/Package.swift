@@ -11,6 +11,7 @@ let package = Package(
   products: [
     .library(name: "Items", targets: ["Items"]),
     .library(name: "Magic", targets: ["Magic"]),
+    .library(name: "World", targets: ["World"]),
     .library(name: "Tabbar", targets: ["Tabbar"]),
   ],
   dependencies: [
@@ -21,7 +22,12 @@ let package = Package(
   targets: [
     .target(
       name: "Tabbar",
-      dependencies: ["SharedUI"]),
+      dependencies: [
+        "SharedUI",
+        "Magic",
+        "Items",
+        "World"
+      ]),
     .target(
       name: "Magic",
       dependencies: ["Networking",
@@ -34,5 +40,11 @@ let package = Package(
                      "SharedUI",
                      .product(name: "ApolloModels", package: "Models")],
       exclude: ["GQL/items.graphql"]),
+    .target(
+      name: "World",
+      dependencies: ["Networking",
+                     "SharedUI",
+                     .product(name: "ApolloModels", package: "Models")],
+      exclude: ["GQL/world.graphql"]),
   ]
 )
