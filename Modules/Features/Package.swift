@@ -11,6 +11,7 @@ let package = Package(
   products: [
     .library(name: "Items", targets: ["Items"]),
     .library(name: "Magic", targets: ["Magic"]),
+    .library(name: "Tabbar", targets: ["Tabbar"]),
   ],
   dependencies: [
     .package(name: "Networking", path: "./Networking"),
@@ -18,6 +19,9 @@ let package = Package(
     .package(name: "SharedUI", path: "./SharedUI"),
   ],
   targets: [
+    .target(
+      name: "Tabbar",
+      dependencies: ["SharedUI"]),
     .target(
       name: "Magic",
       dependencies: ["Networking",

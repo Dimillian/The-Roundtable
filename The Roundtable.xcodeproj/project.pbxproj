@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F61913A27E8B89700D472EA /* SharedUI in Frameworks */ = {isa = PBXBuildFile; productRef = 9F61913927E8B89700D472EA /* SharedUI */; };
-		9F7C08DF27E8C724006732EE /* AppTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C08DE27E8C724006732EE /* AppTabbar.swift */; };
-		9F7C08E127E8C821006732EE /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C08E027E8C821006732EE /* Tabs.swift */; };
+		9FA3EB2427EB07D100239BC4 /* Tabbar in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA3EB2327EB07D100239BC4 /* Tabbar */; };
 		9FADB98627E8846C00447FAB /* Items in Frameworks */ = {isa = PBXBuildFile; productRef = 9FADB98527E8846C00447FAB /* Items */; };
 		9FD3106C27EA43B3003934D0 /* Magic in Frameworks */ = {isa = PBXBuildFile; productRef = 9FD3106B27EA43B3003934D0 /* Magic */; };
 		9FD834B327E86D34000D98C3 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD834B227E86D34000D98C3 /* App.swift */; };
@@ -20,8 +19,6 @@
 /* Begin PBXFileReference section */
 		9F1AC1D927EAFD11003A1A95 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Models; path = Modules/Models; sourceTree = "<group>"; };
 		9F3E6EDB27E8B5AD0010A341 /* SharedUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedUI; path = Modules/SharedUI; sourceTree = "<group>"; };
-		9F7C08DE27E8C724006732EE /* AppTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabbar.swift; sourceTree = "<group>"; };
-		9F7C08E027E8C821006732EE /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
 		9FCC570827EB04AD00050ED0 /* Features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Features; path = Modules/Features; sourceTree = "<group>"; };
 		9FD834AF27E86D34000D98C3 /* The Roundtable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Roundtable.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD834B227E86D34000D98C3 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -37,6 +34,7 @@
 			files = (
 				9FD3106C27EA43B3003934D0 /* Magic in Frameworks */,
 				9FADB98627E8846C00447FAB /* Items in Frameworks */,
+				9FA3EB2427EB07D100239BC4 /* Tabbar in Frameworks */,
 				9F61913A27E8B89700D472EA /* SharedUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,15 +42,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9F3E6EDA27E8AA360010A341 /* Tabbar */ = {
-			isa = PBXGroup;
-			children = (
-				9F7C08DE27E8C724006732EE /* AppTabbar.swift */,
-				9F7C08E027E8C821006732EE /* Tabs.swift */,
-			);
-			path = Tabbar;
-			sourceTree = "<group>";
-		};
 		9FADB98427E8846C00447FAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,7 +73,6 @@
 		9FD834B127E86D34000D98C3 /* The Roundtable */ = {
 			isa = PBXGroup;
 			children = (
-				9F3E6EDA27E8AA360010A341 /* Tabbar */,
 				9FD834B227E86D34000D98C3 /* App.swift */,
 				9FD834B627E86D36000D98C3 /* Assets.xcassets */,
 				9FD834B827E86D36000D98C3 /* Preview Content */,
@@ -120,6 +108,7 @@
 				9FADB98527E8846C00447FAB /* Items */,
 				9F61913927E8B89700D472EA /* SharedUI */,
 				9FD3106B27EA43B3003934D0 /* Magic */,
+				9FA3EB2327EB07D100239BC4 /* Tabbar */,
 			);
 			productName = "The Roundtable";
 			productReference = 9FD834AF27E86D34000D98C3 /* The Roundtable.app */;
@@ -175,9 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F7C08DF27E8C724006732EE /* AppTabbar.swift in Sources */,
 				9FD834B327E86D34000D98C3 /* App.swift in Sources */,
-				9F7C08E127E8C821006732EE /* Tabs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +370,10 @@
 		9F61913927E8B89700D472EA /* SharedUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedUI;
+		};
+		9FA3EB2327EB07D100239BC4 /* Tabbar */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Tabbar;
 		};
 		9FADB98527E8846C00447FAB /* Items */ = {
 			isa = XCSwiftPackageProductDependency;

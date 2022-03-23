@@ -1,10 +1,12 @@
 import SwiftUI
 import SharedUI
 
-struct AppTabbar: View {  
+public struct Tabbar: View {
   @State private var selectedTab: Tabs = .items
   
-  var body: some View {
+  public init() {}
+  
+  public var body: some View {
     TabView(selection: $selectedTab) {
       ForEach(Tabs.allCases) { tab in
         tab.contentView.tabItem {
@@ -19,8 +21,8 @@ struct AppTabbar: View {
   }
 }
 
-struct AppTabbar_Previews: PreviewProvider {
+struct Tabbar_Previews: PreviewProvider {
   static var previews: some View {
-    AppTabbar()
+    Tabbar()
   }
 }
