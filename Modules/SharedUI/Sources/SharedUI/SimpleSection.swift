@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct SharedSection: View {
+public struct SimpleSection: View {
   public let title: String
   public let content: String
   
@@ -16,15 +16,15 @@ public struct SharedSection: View {
         .foregroundColor(.white)
         .listRowBackground(Color.sky)
     } header: {
-      SharedSectionTitle(title: title)
+      SectionTitle(title: title)
     }
   }
 }
 
-struct SharedSection_Previews: PreviewProvider {
+struct SimpleSection_Previews: PreviewProvider {
   static var previews: some View {
     List {
-      SharedSection(title: "Test", content: "Test")
+      SimpleSection(title: "Test", content: "Test")
     }
   }
 }

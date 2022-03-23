@@ -24,7 +24,7 @@ public struct AttributeDataSection: View {
       }
       .listRowBackground(Color.sky)
     } header: {
-      SharedSectionTitle(title: title)
+      SectionTitle(title: title)
     }
   }
 }

@@ -20,28 +20,28 @@ struct MagicDetailView: View {
         Spacer()
       }
       .listRowBackground(Color.black)
-      SharedSection(title: "Description", content: magic.description ?? "")
+      SimpleSection(title: "Description", content: magic.description ?? "")
       if let magic = magic as? SpellData {
-        SharedSection(title: "Cost", content: "\(magic.cost ?? 0) FP")
-        SharedSection(title: "Slots", content: "\(magic.slots ?? 0)")
+        SimpleSection(title: "Cost", content: "\(magic.cost ?? 0) FP")
+        SimpleSection(title: "Slots", content: "\(magic.slots ?? 0)")
         if let effect = magic.effects {
-          SharedSection(title: "Effects", content: effect)
+          SimpleSection(title: "Effects", content: effect)
         }
         if let requiered = magic.requieredData {
           AttributeDataSection(title: "Requiere", data: requiered)
         }
       }
       if let magic = magic as? AshOfWarData {
-        SharedSection(title: "Affinity", content: magic.affinity ?? "")
-        SharedSection(title: "Skill", content: magic.skill ?? "")
+        SimpleSection(title: "Affinity", content: magic.affinity ?? "")
+        SimpleSection(title: "Skill", content: magic.skill ?? "")
       }
       if let magic = magic as? SpriritData {
-        SharedSection(title: "Effect", content: magic.effect ?? "")
+        SimpleSection(title: "Effect", content: magic.effect ?? "")
         if let hPCost = magic.hpCost, Int(hPCost)! > 0 {
-          SharedSection(title: "HP Cost", content: hPCost)
+          SimpleSection(title: "HP Cost", content: hPCost)
         }
         if let fpCost = magic.fpCost, Int(fpCost)! > 0 {
-          SharedSection(title: "FP Cost", content: fpCost)
+          SimpleSection(title: "FP Cost", content: fpCost)
         }
       }
     }

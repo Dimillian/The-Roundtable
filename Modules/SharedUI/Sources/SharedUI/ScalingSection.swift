@@ -24,7 +24,7 @@ public struct ScalingSection: View {
       }
       .listRowBackground(Color.sky)
     } header: {
-      SharedSectionTitle(title: title)
+      SectionTitle(title: title)
     }
   }
 }

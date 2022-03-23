@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct SharedSectionTitle: View {
+public struct SectionTitle: View {
   public let title: String
   
   public init(title: String) {
@@ -14,10 +14,10 @@ public struct SharedSectionTitle: View {
   }
 }
 
-struct SharedSectionTitle_Previews: PreviewProvider {
+struct SectionTitle_Previews: PreviewProvider {
   static var previews: some View {
     List {
-      SharedSectionTitle(title: "Test")
+      SectionTitle(title: "Test")
     }
   }
 }
