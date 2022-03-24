@@ -21,7 +21,6 @@ class ItemsListViewModel: ObservableObject {
       if searchText.isEmpty {
         selectedTab = .items
       } else {
-        state = .loading
         currentPage = 0
         Task {
           await fetchSearchItem(query: searchText)
@@ -60,7 +59,6 @@ class ItemsListViewModel: ObservableObject {
   }
   
   func fetchSearchItem(query: String) async {
-    state = .loading
     let query = GQL.GetSearchItemsQuery(query: query, page: 0, limit: 15)
     do {
       var searchResults: [SearchResultData] = []
