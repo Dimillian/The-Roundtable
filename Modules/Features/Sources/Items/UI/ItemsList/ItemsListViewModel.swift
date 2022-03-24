@@ -11,12 +11,24 @@ class ItemsListViewModel: ObservableObject {
   }
   
   enum State {
-    case loading, data(items: [BaseItemData]), error
+    case loading, data(items: [BaseItemData]), searchData(items: [SearchResultData]), error
   }
     
   @Published var state: State = .loading
   @Published var isLoadingNextPage = false
-  @Published var searchText: String = ""
+  @Published var searchText: String = "" {
+    didSet{
+      if searchText.isEmpty {
+        selectedTab = .items
+      } else {
+        state = .loading
+        currentPage = 0
+        Task {
+          await fetchSearchItem(query: searchText)
+        }
+      }
+    }
+  }
   
   @Published var selectedTab: ItemTab = .items {
     didSet {
@@ -44,6 +56,22 @@ class ItemsListViewModel: ObservableObject {
       await fetchNextWeapons()
     case .talisman:
       await fetchNextTalismans()
+    }
+  }
+  
+  func fetchSearchItem(query: String) async {
+    state = .loading
+    let query = GQL.GetSearchItemsQuery(query: query, page: 0, limit: 15)
+    do {
+      var searchResults: [SearchResultData] = []
+      let results = try await GQLClient.shared.fetch(query: query, cachePolicy: .returnCacheDataElseFetch)
+      searchResults.append(contentsOf: results.item?.compactMap{ $0 } ?? [])
+      searchResults.append(contentsOf: results.armor?.compactMap{ $0 } ?? [])
+      searchResults.append(contentsOf: results.weapon?.compactMap{ $0 } ?? [])
+      searchResults.append(contentsOf: results.talisman?.compactMap{ $0 } ?? [])
+      state = .searchData(items: searchResults)
+    } catch {
+      state = .error
     }
   }
   

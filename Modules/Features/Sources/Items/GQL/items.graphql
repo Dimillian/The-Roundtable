@@ -46,6 +46,29 @@ query GetTalisman($id: String!) {
   }
 }
 
+query GetSearchItems($query: String!, $page: Int!, $limit: Int!) {
+  item(page: $page, limit: $limit, search: $query) {
+    id
+    name
+    image
+  }
+  armor(page: $page, limit: $limit, search: $query) {
+    id
+    name
+    image
+  }
+  weapon(page: $page, limit: $limit, search: $query) {
+    id
+    name
+    image
+  }
+  talisman(page: $page, limit: $limit, search: $query) {
+    id
+    name
+    image
+  }
+}
+
 fragment BaseItemData on Item {
   id
   image

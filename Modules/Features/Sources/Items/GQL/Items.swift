@@ -13,6 +13,12 @@ protocol BaseItemData {
   var itemType: ItemType { get }
 }
 
+protocol SearchResultData {
+  var id: String { get }
+  var name: String? { get }
+  var image: String? { get }
+}
+
 protocol ItemPouchData {
   var effect: String? { get }
   var type: String? { get }
@@ -106,6 +112,43 @@ extension GQL.BaseTalismanData: BaseItemData {
 }
 
 extension GQL.TalismanData: BaseItemData, TalismanItemData {
+  var itemType: ItemType {
+    .talisman
+  }
+}
+
+extension GQL.GetSearchItemsQuery.Data.Item: SearchResultData, BaseItemData {
+  var description: String? {
+    nil
+  }
+  
+  var itemType: ItemType {
+    .item
+  }
+}
+extension GQL.GetSearchItemsQuery.Data.Armor: SearchResultData, BaseItemData {
+  var description: String? {
+    nil
+  }
+  
+  var itemType: ItemType {
+    .armor
+  }
+}
+extension GQL.GetSearchItemsQuery.Data.Weapon: SearchResultData, BaseItemData {
+  var description: String? {
+    nil
+  }
+  
+  var itemType: ItemType {
+    .weapon
+  }
+}
+extension GQL.GetSearchItemsQuery.Data.Talisman: SearchResultData, BaseItemData {
+  var description: String? {
+    nil
+  }
+  
   var itemType: ItemType {
     .talisman
   }

@@ -1,5 +1,6 @@
 import SwiftUI
 import SharedUI
+import Kingfisher
 
 public struct ItemsListView: View {
   @StateObject private var viewModel: ItemsListViewModel
@@ -17,19 +18,25 @@ public struct ItemsListView: View {
             loadingStateView
           case let .data(items):
             makeItemsList(items: items)
+          case let .searchData(items):
+            makeSearchResultsList(items: items)
           case .error:
             errorView
           }
         } header: {
-          tabSelectorView
+          if viewModel.searchText.isEmpty {
+            tabSelectorView
+          }
         }
       }
-      .searchable(text: $viewModel.searchText)
+      .searchable(text: $viewModel.searchText, prompt: "Search for an item")
       .listStyle(.plain)
       .navigationTitle(Text("ITEMS"))
       .background(Color.sky)
       .task {
-        await viewModel.fetchNextBaseItems()
+        if viewModel.searchText.isEmpty {
+          await viewModel.fetchNextBaseItems()
+        }
       }
       .refreshable {
         viewModel.currentPage = 0
@@ -73,6 +80,26 @@ public struct ItemsListView: View {
         .task {
         await viewModel.fetchNextBaseItems()
       }
+    }
+  }
+  
+  private func makeSearchResultsList(items: [SearchResultData]) -> some View {
+    ForEach(items, id: \.id) { item in
+      NavigationLink {
+        if let item = item as? BaseItemData {
+          ItemDetailView(baseItem: item)
+        }
+      } label: {
+        HStack {
+          if let imageString = item.image, let imageURL = URL(string: imageString) {
+            KFImage(imageURL)
+              .resizable()
+              .frame(width: 30, height: 30)
+          }
+          Text(item.name ?? "")
+            .foregroundColor(.edtree)
+        }
+      }.listRowBackground(Color.sky)
     }
   }
 }

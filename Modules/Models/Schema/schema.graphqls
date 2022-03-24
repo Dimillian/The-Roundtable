@@ -172,34 +172,34 @@ type Weapon {
 }
 
 type Query {
-  ammo(id: ID, name: String, description: String, type: String, passive: String, page: Int = 0, limit: Int): [Ammo]
+  ammo(id: ID, name: String, description: String, type: String, passive: String, page: Int = 0, limit: Int, search: String): [Ammo]
   getAmmo(id: String!): Ammo!
-  armor(id: ID, name: String, description: String, category: String, weight: Int, page: Int = 0, limit: Int): [Armor]
+  armor(id: ID, name: String, description: String, category: String, weight: Int, page: Int = 0, limit: Int, search: String): [Armor]
   getArmor(id: String!): Armor!
-  ashOfWar(id: ID, name: String, description: String, affinity: String, skill: String, page: Int = 0, limit: Int): [AshOfWar]
+  ashOfWar(id: ID, name: String, description: String, affinity: String, skill: String, page: Int = 0, limit: Int, search: String): [AshOfWar]
   getAshOfWar(id: String!): AshOfWar!
-  boss(id: ID, name: String, description: String, location: String, healthPoints: String, page: Int = 0, limit: Int): [Boss]
+  boss(id: ID, name: String, description: String, location: String, healthPoints: String, page: Int = 0, limit: Int, search: String): [Boss]
   getBoss(id: String!): Boss!
-  class(id: ID, name: String, description: String, page: Int = 0, limit: Int): [Class]
+  class(id: ID, name: String, description: String, page: Int = 0, limit: Int, search: String): [Class]
   getClass(id: String!): Class!
-  creature(id: ID, name: String, description: String, location: String, page: Int = 0, limit: Int): [Creature]
+  creature(id: ID, name: String, description: String, location: String, page: Int = 0, limit: Int, search: String): [Creature]
   getCreature(id: String!): Creature!
-  incantation(id: ID, name: String, description: String, type: String, cost: Int, slots: Int, page: Int = 0, limit: Int): [Incantation]
+  incantation(id: ID, name: String, description: String, type: String, cost: Int, slots: Int, page: Int = 0, limit: Int, search: String): [Incantation]
   getIncantation(id: String!): Incantation!
-  item(id: ID, name: String, description: String, effect: String, page: Int = 0, limit: Int): [Item]
+  item(id: ID, name: String, description: String, effect: String, page: Int = 0, limit: Int, search: String): [Item]
   getItem(id: String!): Item!
-  location(id: ID, name: String, description: String, page: Int = 0, limit: Int): [Location]
+  location(id: ID, name: String, description: String, page: Int = 0, limit: Int, search: String): [Location]
   getLocation(id: String!): Location!
-  npc(id: ID, name: String, description: String, quote: String, location: String, role: String, page: Int = 0, limit: Int): [Npc]
+  npc(id: ID, name: String, description: String, quote: String, location: String, role: String, page: Int = 0, limit: Int, search: String): [Npc]
   getNpc(id: String!): Npc!
-  shield(id: ID, name: String, description: String, category: String, weight: Int, page: Int = 0, limit: Int): [Shield]
+  shield(id: ID, name: String, description: String, category: String, weight: Int, page: Int = 0, limit: Int, search: String): [Shield]
   getShield(id: String!): Shield!
-  sorcery(id: ID, name: String, description: String, type: String, cost: Int, slots: Int, page: Int = 0, limit: Int): [Sorcery]
+  sorcery(id: ID, name: String, description: String, type: String, cost: Int, slots: Int, page: Int = 0, limit: Int, search: String): [Sorcery]
   getSorcery(id: String!): Sorcery!
-  spirit(id: ID, name: String, description: String, fpCost: String, hpCost: String, effect: String, page: Int = 0, limit: Int): [Spirit]
+  spirit(id: ID, name: String, description: String, fpCost: String, hpCost: String, effect: String, page: Int = 0, limit: Int, search: String): [Spirit]
   getSpirit(id: String!): Spirit!
-  talisman(id: ID, name: String, description: String, effect: String, page: Int = 0, limit: Int): [Talisman]
+  talisman(id: ID, name: String, description: String, effect: String, page: Int = 0, limit: Int, search: String): [Talisman]
   getTalisman(id: String!): Talisman!
-  weapon(id: ID, name: String, description: String, category: String, weight: Int, page: Int = 0, limit: Int): [Weapon]
+  weapon(id: ID, name: String, description: String, category: String, weight: Int, page: Int = 0, limit: Int, search: String): [Weapon]
   getWeapon(id: String!): Weapon!
 }
