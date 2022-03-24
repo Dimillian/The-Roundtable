@@ -3,6 +3,7 @@ import Foundation
 import Networking
 import ApolloModels
 import Apollo
+import Combine
 
 @MainActor
 class ItemsListViewModel: ObservableObject {
@@ -20,11 +21,6 @@ class ItemsListViewModel: ObservableObject {
     didSet{
       if searchText.isEmpty {
         selectedTab = .items
-      } else {
-        currentPage = 0
-        Task {
-          await fetchSearchItem(query: searchText)
-        }
       }
     }
   }
@@ -39,8 +35,25 @@ class ItemsListViewModel: ObservableObject {
     }
   }
   
+  private var cancellableSet: Set<AnyCancellable> = Set()
   private var datasource: [BaseItemData] = []
   var currentPage = 0
+  
+  init() {
+    _searchText
+      .projectedValue
+      .debounce(for: .seconds(0.2), scheduler: RunLoop.main)
+      .sink { [weak self] search in
+        guard let self = self else { return }
+        if !search.isEmpty {
+          self.currentPage = 0
+          Task {
+            await self.fetchSearchItem(query: search)
+          }
+        }
+      }
+      .store(in: &cancellableSet)
+  }
   
   func fetchNextBaseItems() async {
     if currentPage > 0 {

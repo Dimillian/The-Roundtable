@@ -17,7 +17,11 @@ public struct ItemsListView: View {
           case .loading:
             loadingStateView
           case let .data(items):
-            makeItemsList(items: items)
+            if viewModel.searchText.isEmpty {
+              makeItemsList(items: items)
+            } else {
+              EmptyView()
+            }
           case let .searchData(items):
             makeSearchResultsList(items: items)
           case .error:
